@@ -1,9 +1,11 @@
 #include "Model.h"
-#include <iostream>
 
 Model::Model(const std::string &fileName){
     file = fileName;
     std::ifstream input_strem(fileName);
+    if (!input_strem.is_open()){
+        std::cout << "File " << file <<" not found!" << std::endl;
+    }
     unsigned char c;
     while (input_strem.get(reinterpret_cast<char&>(c))){
         freq[(unsigned int)c]+=1;

@@ -7,18 +7,14 @@ class Compressor{
     private:
         std::string fileName;
         Model model;
-        unsigned char bit_buffer;
-        int bit_in_buffer;
         std::ifstream input_stream;
-        std::ofstream output_stream;
+        Bitio output_stream;
     public:
-        Compressor(const std::string &fileName):
+        Compressor(const std::string &fileName, const Model &model):
             fileName(fileName),
-            model(fileName),
-            bit_buffer(0),
-            bit_in_buffer(0),
+            model(model),
             input_stream(fileName),
-            output_stream(fileName+"ark")
+            output_stream(fileName.substr(0,fileName.find_last_of('.'))+".code","w")
             {};
         void compress();
         void output_bit(const bool &);

@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include "Bitio.h"
 #include "Interval.h"
 
 class Model{
@@ -21,6 +22,7 @@ class Model{
         }
         size_t get_count(){return size;}
         void print_intervals();
+        std::vector<unsigned int> get_keys(){ return keys;};
 };
 
 #endif

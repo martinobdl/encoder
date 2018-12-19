@@ -1,21 +1,9 @@
 #include "Compressor.h"
 
-void Compressor::output_bit(const bool &bit){
-    std::cout << bit << std::endl;
-    if (bit)
-        bit_buffer |= (1<<bit_in_buffer);
-    bit_in_buffer++;
-    if (bit_in_buffer == 8){
-        output_stream << bit_buffer;
-        bit_in_buffer = 0;
-        bit_buffer = 0;
-    }
-}
-
 void Compressor::output_bits(const bool &bit, int pending_bits){
-    output_bit(bit);
+    output_stream << bit;
     while(pending_bits--){
-        output_bit(!bit);
+        output_stream << !bit;
     }
 }
 
@@ -31,7 +19,7 @@ void Compressor::compress(){
         low = low + (l/model.get_count())*p.lower;
         bool check = true;
         std::cout << std::endl<< c << std::endl;
-        float f = 0xFFFFFFFF;
+        float f = 0xFFFFFFFFU;
         for( ; ; ){
             std::cout << low/f << ", " << high/f << std::endl;
             if(high < 0x80000000U){
@@ -59,5 +47,4 @@ void Compressor::compress(){
         }
     }
     output_bits(1,pending_bits);
-
 }
