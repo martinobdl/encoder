@@ -1,4 +1,4 @@
-#include "BitIO.h"
+#include "Bitio.h"
 
 Bitio::Bitio(const std::string &fileName, const std::string &m){
     mode = m;
