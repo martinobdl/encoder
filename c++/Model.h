@@ -5,7 +5,6 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include "Bitio.h"
 #include "Interval.h"
 
 class Model{

@@ -2,19 +2,20 @@
 #define COMPRESSOR_H_
 
 #include "Model.h"
+#include "Write_bit.h"
 
 class Compressor{
     private:
         std::string fileName;
         Model model;
         std::ifstream input_stream;
-        Bitio output_stream;
+        Write_bit output_stream;
     public:
         Compressor(const std::string &fileName, const Model &model):
             fileName(fileName),
             model(model),
             input_stream(fileName),
-            output_stream(fileName.substr(0,fileName.find_last_of('.'))+".code","w")
+            output_stream(fileName.substr(0,fileName.find_last_of('.'))+".code")
             {};
         void compress();
         void output_bit(const bool &);

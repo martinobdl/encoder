@@ -1,22 +1,23 @@
-#include "Bitio.h"
+#include "Write_bit.h"
+#include "Read_bit.h"
 
 /*
 Bitio_test.txt needs to exists. Change!
 */
 
 int main(){
-    Bitio write_stream("Bitio_test_write.txt","w");
-    write_stream<<0;
-    write_stream<<1;
-    write_stream<<0;
-    write_stream.close();
+   // Write_bit write_stream("test.txt");
+   // write_stream<<0;
+   // write_stream<<1;
+   // write_stream<<0;
+   // write_stream.close();
 
     bool bit;
-    Bitio read_stream("Bitio_test_read.txt","r");
-    for(int i=0; i<8; i++){
+    Read_bit read_stream("test.txt");
+    for(int i=0; i<40; i++){
         read_stream >> bit;
-        std::cout << bit << std::endl;
+        std::cout << bit;
     }
-    read_stream.close();
+    std::cout  << std::endl;
     return 0;
 }

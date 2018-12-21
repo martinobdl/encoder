@@ -14,8 +14,8 @@ Model::Model(const std::string &fileName){
     for(std::map<unsigned int,unsigned int>::iterator it = freq.begin(); it != freq.end(); ++it){
         keys.push_back(it->first);
     }
-    unsigned sum = 0;
-    unsigned sum_old = 0;
+    unsigned sum = 1;
+    unsigned sum_old = sum;
     for(auto k: keys){
         sum += freq[k];
         p[k].lower=sum_old;
@@ -30,7 +30,7 @@ void Model::print_intervals(){
     std::cout << std::endl;
     std::cout << "key: lower, upper" << std::endl;
     for(auto k:keys){
-        std::cout << k << ": " << p[k].lower << ", " << p[k].upper << std::endl;
+        std::cout << (char)k << ": " << p[k].lower << ", " << p[k].upper << std::endl;
     }
     std::cout << std::endl;
 }
