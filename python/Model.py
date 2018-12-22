@@ -23,3 +23,9 @@ class Model:
             old_s = s
         self.count = s
 
+    def get_prob(self,s):
+        return self.c[s]
+
+    def get_denom(self):
+        return self.count
+

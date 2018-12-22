@@ -2,16 +2,20 @@ from Model import Model
 from Compressor import Compressor
 from Read_bit import Read_bit
 from Decompressor import Decompressor
+import sys,os
 
-filename = "enwiki6"
-model = Model(filename+".txt")
-print model.c
-print "\n----------compressing-----------"
-c = Compressor(filename+".txt",model)
-c.compress()
-print "\n---------decompressing----------"
-d = Decompressor(filename+".code",model)
-d.decompress()
+mode = sys.argv[1]
+filename = sys.argv[2]
+model = Model(filename.split(".")[0]+'.txt')
+#print model.c
+if mode == "-c":
+    print "----------compressing-----------"
+    c = Compressor(filename,model)
+    c.compress()
+elif mode == "-d":
+    print "---------decompressing----------"
+    d = Decompressor(filename,model)
+    d.decompress()
 
 
 

@@ -1,7 +1,7 @@
 from Write_bit import Write_bit
 from specs import SPECS
 
-class Compressor:
+class MarkovCompressor:
     def __init__(self,namefile,model):
         self.read_file = open(namefile, "rb")
         self.write_file = Write_bit(namefile+'.code')
@@ -11,19 +11,20 @@ class Compressor:
         high = SPECS["MAX"]
         low = 0
         pending_bits = 0
+        s_old = 0
         while True:
             char = self.read_file.read(1)
-            #print char
+            print char
             if not char:
                 break
             s=ord(char)
-            p = self.model.get_prob(s)
+            p = self.model.get_prob(s_old,s)
             l = high - low
-            high = low + (l * p[1])/self.model.get_denom()
-            low = low + (l * p[0])/self.model.get_denom()
+            high = low + (l * p[1])/self.model.get_denom(s_old)
+            low = low + (l * p[0])/self.model.get_denom(s_old)
             check = True
             while(check):
-                #print low,high
+                print low,high,p,"\t",self.model.get_denom(s_old)
                 if(high < SPECS["HALF"]):
                     self.emit(0,pending_bits)
                     high <<= 1
@@ -39,6 +40,8 @@ class Compressor:
                     high = 2*(high - SPECS["QUARTER"])
                     low = 2*(low - SPECS["QUARTER"])
                 else: check = False
+            self.model.update(s_old,s)
+            s_old = s
         s+=1
         if high < SPECS["QUARTER"]:
             self.emit(0,pending_bits)

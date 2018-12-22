@@ -75,5 +75,6 @@ void Decompressor::decompress(){
             }
         }
     }
+    write_stream << "\n";
     write_stream.close();
 }
