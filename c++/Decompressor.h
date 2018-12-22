@@ -4,6 +4,7 @@
 #include "Model.h"
 #include "Interval.h"
 #include "Read_bit.h"
+#include <cmath>
 
 class Decompressor{
     private:
@@ -19,7 +20,7 @@ class Decompressor{
         write_stream(fileName.substr(0,fileName.find_last_of('.'))+".decoded")
         {};
         void decompress();
-        unsigned char get_char(const unsigned int &count);
+        unsigned char get_char(const unsigned long long int &, const unsigned long long  int &, const unsigned long long int &);
 };
 
 #endif

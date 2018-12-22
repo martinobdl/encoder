@@ -3,6 +3,7 @@
 
 #include "Model.h"
 #include "Write_bit.h"
+#include <cmath>
 
 class Compressor{
     private:

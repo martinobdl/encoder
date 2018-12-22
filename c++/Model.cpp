@@ -14,8 +14,8 @@ Model::Model(const std::string &fileName){
     for(std::map<unsigned int,unsigned int>::iterator it = freq.begin(); it != freq.end(); ++it){
         keys.push_back(it->first);
     }
-    unsigned sum = 1;
-    unsigned sum_old = sum;
+    unsigned int sum = 0;
+    unsigned int sum_old = sum;
     for(auto k: keys){
         sum += freq[k];
         p[k].lower=sum_old;

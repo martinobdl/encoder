@@ -16,7 +16,6 @@ Decompressor.o: Decompressor.h Model.h Interval.h Read_bit.h
 $(EXE): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-
 .PHONY: all clean distclean
 clean:
 	$(RM) *.o
